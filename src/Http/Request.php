@@ -6,6 +6,9 @@ class Request
     public function __construct(
         private array $queryParams,  // $_GET
         private array $serverVars = [],
+        private array $postParams = [],
+        private array $cookies    = [],
+        private array $files      = [],
     )
     {
     }
@@ -24,7 +27,6 @@ class Request
         $serverVars = array_merge($server, $_SERVER);
 
         $_SERVER['REQUEST_METHOD'] = $method;
-
 
         return new self(
             $queryParams,
