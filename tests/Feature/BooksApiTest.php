@@ -19,3 +19,27 @@ it('retrieves the correct data form books api', function() {
         ]
     ]);
 });
+
+
+it('retrieves the correct book 2 data from the books API', function() {
+
+    // ARRANGE
+    // Data fixtures
+
+    // ACT
+    // Send a get request to the API
+    $response = $this->json(method: 'GET', uri: '/books/2');
+
+    // ASSERT
+    expect($response->getStatusCode())->toBeInt()->toBe(200) // 200 status received
+    ->and($response->getBody())->toMatchJson([
+        'id' => 2,
+        'title' => 'Refactoring: Improving the Design of Existing Code',
+        'yearPublished' => 1999,
+        'author' => [
+            'id' => 2,
+            'name' => 'Martin Fowler',
+            'bio' => 'Martin\'s bio'
+        ]
+    ]);
+});
